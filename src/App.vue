@@ -1,17 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-secondary" @click.prevent="decreasing">Decrease</button>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" placeholder="0" v-model="counter" readonly>
+      </div>
+      <div class="col">
+        <button class="btn btn-secondary" @click.prevent="increasing">Increase</button>        
+      </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+  },
+  computed: {
+    counter() {
+      return this.$store.state.counter
+    }
+  },
+  methods: {
+    increasing() {
+      this.$store.dispatch('increaseCounter')
+    },
+    decreasing() {
+      this.$store.dispatch('decreaseCounter')
+    }
+  },
+  
 }
+
+//Option API & Composition API
 </script>
 
 <style>
